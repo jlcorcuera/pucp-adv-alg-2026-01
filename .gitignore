@@ -39,3 +39,7 @@
 
 # debug information files
 *.dwo
+.idea/
+cmake-build-debug/
+CMakeLists.txt
+path_finding
