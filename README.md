@@ -1,8 +1,4 @@
-# Advanced Algorithms
-### Pontificia Universidad Católica del Perú (PUCP)
-**Department of Engineering** · Semester 2026-1
-
----
+# Advanced Algorithms - 2026-1
 
 ## 📋 Course Information
 
