@@ -7,7 +7,7 @@
 | **Course Name** | Advanced Algorithms |
 | **Course Code** | 1INF32 |
 | **Schedule** | 0684 |
-| **Instructor** | [José Luis Corcuera Bárcena](https://scholar.google.com/citations?user=dasDbcAAAAAJ&hl=en) |
+| **Instructor** | [José Luis Corcuera Bárcena](https://jlcorcuera.github.io/) |
 | **University** | Pontificia Universidad Católica del Perú (PUCP) |
 | **Department** | Department of Engineering |
 | **Semester** | 2026-1 (March – July 2026) |
