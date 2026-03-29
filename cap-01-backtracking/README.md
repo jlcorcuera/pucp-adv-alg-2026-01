@@ -5,7 +5,7 @@ This folder contains the class exercises and algorithm implementations related t
 ## 📁 Directory Contents
 
 ### 1. Maze Escape Problem (`maze_problem/path_finding.cpp`)
-In this example, we show how to use backtracking to navigate a 2D matrix representing a maze in order to find an escape.
+In this example, we show how to use backtracking to navigate a 2D matrix representing a maze in order to find the **first escape route**.
 
 - **Goal:** Find a valid path from the Start (`S`) to the Exit (`E`) avoiding walls (`#`).
 - **Algorithm:** The proposed solution makes use of a recursive approach. From any given position, it tries 4 possible directions (Up, Right, Down, Left). 
