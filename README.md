@@ -7,7 +7,7 @@
 | **Course Name** | Advanced Algorithms |
 | **Course Code** | 1INF32 |
 | **Schedule** | 0684 |
-| **Instructor** | [José Luis Corcuera Bárcena](https://jlcorcuera.github.io/) |
+| **Professor** | [Dr. José Luis Corcuera Bárcena](https://jlcorcuera.github.io/) |
 | **University** | Pontificia Universidad Católica del Perú (PUCP) |
 | **Department** | Department of Engineering |
 | **Semester** | 2026-1 (March – July 2026) |
@@ -102,10 +102,3 @@ g++ -O2 -o solution solution.cpp
 For course-related inquiries, please send an email to: [jlcorcuera@pucp.pe](mailto:jlcorcuera@pucp.pe).
 
 ---
-
-<div align="center">
-
-**Pontificia Universidad Católica del Perú**  
-Department of Engineering · 2026-1
-
-</div>
