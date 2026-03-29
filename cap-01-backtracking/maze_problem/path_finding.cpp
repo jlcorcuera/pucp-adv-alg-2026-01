@@ -37,6 +37,7 @@ bool solve(int x, int y, char maze[ROWS][COLS], bool visited[ROWS][COLS]) {
         int new_y = y + directions[i][1];
         if (is_valid(new_x, new_y, maze, visited)) {
             if (solve(new_x, new_y, maze, visited)) {
+                // Without this condition, the start position would be marked as part of the path
                 if (maze[x][y] != 'S') {
                     maze[x][y] = '.';
                 }

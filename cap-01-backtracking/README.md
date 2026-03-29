@@ -18,7 +18,6 @@ In this example, we show how to use backtracking to navigate a 2D matrix represe
   g++ -O2 -o path_finding path_finding.cpp
   ./path_finding
   ```
-  *(Note: The code was slightly fixed from the original commit to ensure it properly compiles with `main()`).*
 
 - **Example Output (The Path Found):**
 
