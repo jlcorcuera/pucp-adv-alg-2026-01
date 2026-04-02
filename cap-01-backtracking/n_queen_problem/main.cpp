@@ -62,7 +62,6 @@ void solve(int cur_col, char board[N][N]) {
 int main() {
     char board[N][N];
     init_board(board);
-    //print_board(board);
     solve(0, board);
     return 0;
 }
