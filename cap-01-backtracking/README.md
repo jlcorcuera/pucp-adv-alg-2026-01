@@ -25,8 +25,24 @@ In this example, we show how to use backtracking to navigate a 2D matrix represe
   | ------------- | -------- |
   | <pre>S   #               <br>#   #   # # # # #   <br>#       #           <br># # #   #   # # # # <br>                  # <br>  # # # # # # #   # <br>  #           #   # <br>  #   # # #   #   # <br>      #           # <br># # # # # # # #   E </pre> | <pre>S . # . . . . . . . <br># . # . # # # # # . <br># . . . # . . . . . <br># # #   # . # # # # <br>          . . . . # <br>  # # # # # # # . # <br>  #           # . # <br>  #   # # #   # . # <br>      #         . # <br># # # # # # # # . E </pre> |
 
-### 2. N-Queens Problem *(to be developed during the lecture)*
-Code for the classic 8-Queens problem will be added here shortly. This will demonstrate how to place 8 non-attacking queens on a chessboard using state-space search pruning.
+### 2. N-Queens Problem (`n_queen_problem/main.cpp`)
+In this example, we show how to use backtracking to place $N$ non-attacking queens on an $N \times N$ chessboard. The code provided solves the classic 8-Queens problem.
+
+- **Goal:** Place 8 queens on an $8 \times 8$ chessboard such that no two queens threaten each other. Thus, a solution requires that no two queens share the same row, column, or diagonal.
+- **Algorithm:** The solution uses a recursive backtracking approach, iterating column by column. For a given column, it attempts to place a queen in every row. It checks if the placement is valid (no other queen is attacking it from the left).
+  - If valid, it places the queen (`Q`) and proceeds to the next column recursively.
+  - If it cannot place a queen in a valid position for the current column, it backtracks to the previous column and tries another valid row.
+  - If all 8 queens are placed successfully, a solution is found and printed. The code will continue to find and print all valid solutions.
+- **How to run:**
+  ```bash
+  cd n_queen_problem
+  g++ -O2 -o n_queen main.cpp
+  ./n_queen
+  ```
+
+- **Example Output (First Solution Found):**
+
+  <pre>Q . . . . . . . <br>. . . . . . Q . <br>. . . . Q . . . <br>. . . . . . . Q <br>. Q . . . . . . <br>. . . Q . . . . <br>. . . . . Q . . <br>. . Q . . . . . </pre>
 
 ### 3. Previous Labs problems *(to be developed during the lecture)*
 Code and solutions for problems covered in previous laboratory sessions are included under this section.
