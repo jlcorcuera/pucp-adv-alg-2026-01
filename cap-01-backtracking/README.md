@@ -76,6 +76,8 @@ This problem was evaluated during Lab 01 in the 2024-01 semester. It is based on
   9 6
   ```
 
+- **Note on Alternative Approach:** The approach applied to solve this problem here is similar to the ones previously implemented (iterating through standard choices in `build_order_with_loop`). *Is there any other way to solve this problem?* The answer is yes: by using a binary decision approach—considering whether to **include or not include** the current piece of meat in the solution at each recursive step—we can eliminate the need for the `for` loop inside our recursive method completely. This alternative has been implemented in the `build_order_with_binary_decision` method. Note that this alternative method may produce different results due to the differing nature of the search approach.
+
 ---
 
 [← Back to course root](../README.md)

@@ -16,7 +16,7 @@ bool is_valid(int weight, int k, vector<int> order) {
     return false;
 }
 
-bool build_order(int idx, int P, vector<int> t, int k, vector<int>& order, vector<int>& indexes) {
+bool build_order_with_loop(int idx, int P, vector<int> t, int k, vector<int>& order, vector<int>& indexes) {
     if (P == 0) {
         return true;
     }
@@ -28,11 +28,41 @@ bool build_order(int idx, int P, vector<int> t, int k, vector<int>& order, vecto
         if (is_valid(weight, k, order)) {
             order.push_back(weight);
             indexes.push_back(index);
-            if (build_order(index + 1, P - weight, t, k, order, indexes)) {
+            if (build_order_with_loop(index + 1, P - weight, t, k, order, indexes)) {
                 return true;
             }
             order.pop_back();
             indexes.pop_back();
+        }
+    }
+    return false;
+}
+
+bool build_order_with_binary_decision(int idx, int P, vector<int> t, int k, vector<int>& order, vector<int>& indexes) {
+    if (P == 0) {
+        return true;
+    }
+    int weight = t[idx];
+    if (idx > t.size() || weight > P) {
+        return false;
+    }
+    if (is_valid(weight, k, order)) {
+        /* Let's include the current slide of meat in the solution */
+        order.push_back(weight);
+        indexes.push_back(idx);
+        if (build_order_with_binary_decision(idx + 1, P - weight, t, k, order, indexes)) {
+            return true;
+        }
+        order.pop_back();
+        indexes.pop_back();
+
+        /*
+         * Let's not including the current slide of meat in the solution
+         * Here we don't need to add that slide of meat into the order neither decrease the P parameter
+         * value in the next recursive call
+         */
+        if (build_order_with_binary_decision(idx + 1, P, t, k, order, indexes)) {
+            return true;
         }
     }
     return false;
@@ -49,7 +79,7 @@ int main() {
     while (true) {
         vector<int> order;
         vector<int> indexes;
-        if (build_order(0, P, t, k, order, indexes)) {
+        if (build_order_with_loop(0, P, t, k, order, indexes)) {
             orders.push_back(order);
             for (int index = indexes.size() - 1; index >= 0; index--) {
                 t.erase(t.begin() + indexes[index]);
@@ -60,7 +90,7 @@ int main() {
     }
     cout << orders.size() << endl;
     for (vector order: orders) {
-        cout << "Orden: " << endl;
+        cout << "Order: " << endl;
         for (int i = 0; i < order.size(); i++) {
             cout << order[i] << " ";
         }
