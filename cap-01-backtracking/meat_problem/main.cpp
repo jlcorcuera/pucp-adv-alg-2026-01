@@ -42,11 +42,12 @@ bool build_order_with_binary_decision(int idx, int P, vector<int> t, int k, vect
     if (P == 0) {
         return true;
     }
-    if (idx > t.size() || t[idx] > P) {
-        return false;
-    }
 
     int weight = t[idx];
+
+    if (t[idx] > P) {
+        return false;
+    }
 
     if (is_valid(weight, k, order)) {
         /* Let's include the current slide of meat in the solution */
@@ -81,7 +82,7 @@ int main() {
     while (true) {
         vector<int> order;
         vector<int> indexes;
-        if (build_order_with_loop(0, P, t, k, order, indexes)) {
+        if (build_order_with_binary_decision(0, P, t, k, order, indexes)) {
             orders.push_back(order);
             for (int index = indexes.size() - 1; index >= 0; index--) {
                 t.erase(t.begin() + indexes[index]);
