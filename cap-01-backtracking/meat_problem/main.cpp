@@ -45,7 +45,7 @@ bool build_order_with_binary_decision(int idx, int P, vector<int> t, int k, vect
 
     int weight = t[idx];
 
-    if (t[idx] > P) {
+    if (weight > P) {
         return false;
     }
 
