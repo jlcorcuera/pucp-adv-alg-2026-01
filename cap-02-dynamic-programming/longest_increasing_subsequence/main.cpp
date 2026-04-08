@@ -5,7 +5,7 @@ using namespace std;
 const int N = 8;
 
 int main() {
-    int X[] = {-7, 10, 9, 2, 3, 8, 8, 1};
+    int X[] = {-7, 1, 9, 8, 3, 8, 10, 1};
     int dp[N] = {1};
     for (int i = 1; i < N; i++) {
         for (int j = 0; j < i; j++) {

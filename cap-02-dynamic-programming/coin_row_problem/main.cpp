@@ -12,10 +12,11 @@ int main() {
     for (int idx = 2; idx <= N; idx++) {
         dp[idx] = max(dp[idx - 1], dp[idx - 2] + coins[idx]);
     }
-    int max_value = 0;
-    for (int i = 0; i <= N; i++) {
-        max_value = max(max_value, dp[i]);
-    }
-    cout << max_value;
+    /*
+     * FIX: The code for determining the max sum was removed since
+     * dp[i] contains/refers to the max sum of coins at position i so
+     * at the end, position N will contain that max sum value
+    */
+    cout << dp[N];
     return 0;
 }
