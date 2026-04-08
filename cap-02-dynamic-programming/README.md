@@ -79,7 +79,14 @@ In this example, we solve the classical Longest Increasing Subsequence (LIS) pro
 ### 4. Knapsack Problem (Upcoming)
 *(This problem will be implemented in the next lecture.)*
 
-The Knapsack Problem is a classic optimization problem where the goal is to maximize the total value of items placed in a knapsack without exceeding its weight capacity.
+The Knapsack Problem is a classic optimization problem.
+Given $n$ items with:
+- Integer weights: $w_1, w_2, \dots, w_n$
+- Values: $v_1, v_2, \dots, v_n$
+
+and a knapsack of integer capacity $W$.
+
+**Goal:** Find the most valuable subset of items that fit into the knapsack.
 
 ### 5. Other problems from previous lab sessions
 *(To be added)*
