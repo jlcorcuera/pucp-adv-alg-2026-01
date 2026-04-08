@@ -2,6 +2,9 @@
 
 This folder contains the class exercises and algorithm implementations related to **Dynamic Programming**. Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems. It is applicable to problems exhibiting the properties of overlapping subproblems and optimal substructure. Rather than solving the same subproblems repeatedly, dynamic programming algorithms save the results of these subproblems, significantly improving performance.
 
+> [!WARNING]  
+> **A Note on Indexing (0-based vs 1-based):** Pay close attention to array indexing when implementing these algorithms. It is a very common practice in Dynamic Programming to use 1-based indexing for the state arrays (e.g., `dp[1]` referring to the first item) or to pad the original input arrays with a dummy value at index `0`. This helps logically align the $i$-th item with `dp[i]`, easily manages base cases (like `dp[0] = 0`), and prevents out-of-bounds errors when calculating states that rely on previous elements, such as `dp[i-1]` or `dp[i-2]`.
+
 ## 📑 Table of Problems
 - [1. Fibonacci Sequence](#1-fibonacci-sequence-fibonaccimaincpp)
 - [2. Coin Row Problem](#2-coin-row-problem-coin_row_problemmaincpp)
