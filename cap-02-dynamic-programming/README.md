@@ -17,7 +17,8 @@ This folder contains the class exercises and algorithm implementations related t
 ### 1. Fibonacci Sequence (`fibonacci/main.cpp`)
 In this example, we demonstrate the calculation of the $N$-th Fibonacci number, comparing the simple recursive approach against the optimized dynamic programming approach.
 
-- **Goal:** Calculate the 40th Fibonacci number efficiently.
+- **Goal:** Calculate the $N$-th Fibonacci number efficiently (the provided example code computes it for $N = 40$).
+- **Idea:** Instead of recalculating the same Fibonacci numbers repeatedly (which results in an exponential time complexity), we compute them iteratively from the bottom up. By caching the results of the two previous subproblems, we can compute the current sequence number in $O(1)$ time, essentially turning an exponential algorithm into a purely linear one.
 - **Algorithm:** The solution implements two methods to compute the Fibonacci sequence:
   - **Recursive:** A top-down approach that calls `fibonacci(N - 1) + fibonacci(N - 2)`. This approach recalculates overlapping subproblems.
   - **Dynamic Programming:** A bottom-up approach that builds an array `dp` from `dp[0] = 0` and `dp[1] = 1`, filling each subsequent value as the sum of the two preceding ones. This avoids redundant calculations.
@@ -38,6 +39,7 @@ In this example, we demonstrate the calculation of the $N$-th Fibonacci number, 
 In this example, we show how to use dynamic programming to solve the Coin Row Problem, which consists of finding the maximum sum of coins that can be picked up from a row of coins.
 
 - **Goal:** Select coins from the row `{0, 5, 1, 2, 10, 6, 2}` to maximize the total sum, subject to the constraint that no two adjacent coins can be chosen.
+- **Idea:** For each position in the coin row, we store the maximum amount of money collected so far. When a new position is evaluated, we determine whether adding the current coin to the optimal sum (or subsequence of coins) found in the previous non-adjacent cells yields a better total than simply carrying forward the maximum amount found in the immediately preceding cell (in this temporal storage or structure at the position N we will have the maximum total sum of coins).
 - **Algorithm:** The proposed solution makes use of a bottom-up dynamic programming approach.
   - A state array `dp` is used, where `dp[i]` represents the maximum sum of coins that can be obtained using up to the $i$-th coin.
   - For each new coin starting from index 2, the algorithm decides between two choices: either not select the current coin (taking the optimal sum from `dp[i-1]`) or select the current coin (adding its value to the optimal sum from `dp[i-2]`).
@@ -59,6 +61,7 @@ In this example, we show how to use dynamic programming to solve the Coin Row Pr
 In this example, we solve the classical Longest Increasing Subsequence (LIS) problem. The objective is to find the length of the longest subsequence of a given sequence such that all elements of the subsequence are sorted in increasing order.
 
 - **Goal:** Find the length of the longest increasing subsequence in the array `{-7, 1, 9, 8, 3, 8, 10, 1}`.
+- **Idea:** To discover the longest increasing subsequence ending at a particular element, we can look backwards at all the previous elements that are strictly smaller than the current one. We then safely "extend" the longest of those valid previous subsequences by 1. By doing this iteratively from left to right, we build the globally longest sequence (In contrast to the previous exercise where the solution was found at the end of `dp`, here we have to find the maximum value in `dp`).
 - **Algorithm:** The solution utilizes dynamic programming using a `dp` array.
   - The array `dp` is initialized with `1`s (implicitly or explicitly depending on logic), as each element is at least an increasing subsequence of length 1.
   - For each element in the array at index `i`, we iterate through all previous elements up to index `i-1` (let's call the index `j`).
@@ -87,6 +90,8 @@ Given $n$ items with:
 and a knapsack of integer capacity $W$.
 
 **Goal:** Find the most valuable subset of items that fit into the knapsack.
+
+- **Idea:** For each item, we consider two options: include it (which consumes capacity but adds value) or exclude it (which saves capacity but adds no value). By logically recording the optimal choices for every sub-capacity up to $W$, DP seamlessly compares all valid item combinations to yield the absolute maximum value.
 
 ### 5. Other problems from previous lab sessions
 *(To be added)*
