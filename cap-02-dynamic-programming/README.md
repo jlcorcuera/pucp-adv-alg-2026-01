@@ -91,8 +91,6 @@ and a knapsack of integer capacity $W$.
 
 **Goal:** Find the most valuable subset of items that fit into the knapsack.
 
-- **Idea:** For each item, we consider two options: include it (which consumes capacity but adds value) or exclude it (which saves capacity but adds no value). By logically recording the optimal choices for every sub-capacity up to $W$, DP seamlessly compares all valid item combinations to yield the absolute maximum value.
-
 ### 5. Other problems from previous lab sessions
 *(To be added)*
 
