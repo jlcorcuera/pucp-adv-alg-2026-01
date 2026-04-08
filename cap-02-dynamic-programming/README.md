@@ -6,6 +6,8 @@ This folder contains the class exercises and algorithm implementations related t
 - [1. Fibonacci Sequence](#1-fibonacci-sequence-fibonaccimaincpp)
 - [2. Coin Row Problem](#2-coin-row-problem-coin_row_problemmaincpp)
 - [3. Longest Increasing Subsequence](#3-longest-increasing-subsequence-longest_increasing_subsequencemaincpp)
+- [4. Knapsack Problem (Upcoming)](#4-knapsack-problem-upcoming)
+- [5. Other problems from previous lab sessions](#5-other-problems-from-previous-lab-sessions)
 
 ## 📝 Problem Descriptions and Algorithms
 
@@ -70,6 +72,14 @@ In this example, we solve the classical Longest Increasing Subsequence (LIS) pro
   ```bash
   5
   ```
+
+### 4. Knapsack Problem (Upcoming)
+*(This problem will be implemented in the next lecture.)*
+
+The Knapsack Problem is a classic optimization problem where the goal is to maximize the total value of items placed in a knapsack without exceeding its weight capacity.
+
+### 5. Other problems from previous lab sessions
+*(To be added)*
 
 ---
 
