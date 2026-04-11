@@ -6,6 +6,8 @@ This folder contains the class exercises and algorithm implementations related t
 - [1. Maze Escape Problem](#1-maze-escape-problem-maze_problempath_findingcpp)
 - [2. N-Queens Problem](#2-n-queens-problem-n_queen_problemmaincpp)
 - [3. Meat Orders Problem (Lab 01 2024-1)](#3-meat-orders-problem-lab-01-2024-1-meat_problemmaincpp)
+- [4. Equal Partition Problem (Lab 01 2026-1)](#4-equal-partition-problem-lab-01-2026-1-lab01_202601_equal_partitionmaincpp)
+- [5. Wood Cut Problem (Lab 01 2026-1)](#5-wood-cut-problem-lab-01-2026-1-lab01_202601_wood_cut_problemmaincpp)
 
 ## 📝 Problem Descriptions and Algorithms
 
@@ -77,6 +79,55 @@ This problem was evaluated during Lab 01 in the 2024-01 semester. It is based on
   ```
 
 - **Note on Alternative Approach:** The approach applied to solve this problem here is similar to the ones previously implemented (iterating through standard choices in `build_order_with_loop`). *Is there any other way to solve this problem?* The answer is yes: by using a binary decision approach—considering whether to **include or not include** the current piece of meat in the solution at each recursive step—we can eliminate the need for the `for` loop inside our recursive method completely. This alternative has been implemented in the `build_order_with_binary_decision` method. Note that this alternative method may produce different results due to the differing nature of the search approach.
+
+### 4. Equal Partition Problem (Lab 01 2026-1) (`lab01_202601_equal_partition/main.cpp`)
+This problem was evaluated during Lab 01 in the current 2026-01 semester. It requires splitting an array of numbers into two subsets that have perfectly equal sums.
+
+- **Goal:** Given a set of integers, divide it into two disjoint subsets such that the sum of the elements in both subsets is exactly the same.
+- **Algorithm:** The algorithm first calculates the total sum of the array. If it is odd, equal partition is impossible. If even, it uses backtracking to find a subset that sums exactly to half of the total sum. The codebase features two different backtracking approaches to solve this:
+  1. **Iterative Approach (`solve_backtracking`):** Uses a `for` loop within the recursive method to iterate over the remaining unselected elements. In each step, it attempts to include the chosen element and recursively checks if the remaining target sum can be satisfied.
+  2. **Binary Decision Approach (`solve_backtracking_decision`):** Eliminates the `for` loop completely by making a direct binary choice at each recursive step. For the current element, it branches into two recursive paths: one that *includes* the element in the subset, and another that *excludes* it.
+  
+  In both methods, once the first subset that sums to `total/2` is successfully found, the remaining unpicked elements naturally form the second subset.
+- **How to run:**
+  ```bash
+  cd lab01_202601_equal_partition
+  g++ -O2 -o equal_partition main.cpp
+  ./equal_partition
+  ```
+
+- **Example Output (Valid Partition subsets):**
+  ```bash
+  {5, 3} {4, 2, 1, 1}
+  ```
+
+### 5. Wood Cut Problem (Lab 01 2026-1) (`lab01_202601_wood_cut_problem/main.cpp`)
+This problem was also evaluated during Lab 01 in the 2026-01 semester. Given an $N \times M$ matrix of wood, the goal is to make the maximum number of continuous cuts of length $C$ without overlapping. Both the board dimensions and the cut size can be modified via constants.
+
+- **Goal:** Maximize the number of consecutive cuts of length $C$ (horizontal or vertical) on an $N \times M$ matrix structure without overlapping. A special constraint requires each subsequent cut search to originate from one of the 8 adjacent cells surrounding the *end* of the previously made cut.
+- **Algorithm:** Uses a recursive backtracking approach to explore cuts. From any given position `(row, col)`, the algorithm:
+  - Tries to make a cut of length `C` in 4 possible directions (Down, Left, Up, Right).
+  - Verifies that the entire cut stays within the board boundaries and does not overlap with previously made cuts.
+  - If a valid cut is made, the matrix is updated with the current cut number, and maximum tracking variables are updated if the new count is higher.
+  - From the last position of the successfully made cut, it explores the 8 immediately neighboring cells to start the recursive search for the next cut.
+  - Finally, it backtracks by undoing the cut completely to allow exploration of other alternative cuts.
+- **How to run:**
+  ```bash
+  cd lab01_202601_wood_cut_problem
+  g++ -O2 -o wood_cut main.cpp
+  ./wood_cut
+  ```
+
+- **Example Output (Maximum Cuts and Placement Matrix):**
+  ```bash
+  max_num_cuts: 7
+  Final result
+  1 0 7 7 7 
+  1 6 6 6 4 
+  1 5 5 5 4 
+  2 2 2 0 4 
+  0 0 3 3 3 
+  ```
 
 ---
 
