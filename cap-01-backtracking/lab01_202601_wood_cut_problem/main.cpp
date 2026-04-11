@@ -34,7 +34,7 @@ void copy_matrix(int source[N][M], int target[N][M]) {
 void print(int matrix[N][M]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < M; j++) {
-            cout << ((matrix[i][j] != 0) ? matrix[i][j] : 0) << " ";
+            cout << ((matrix[i][j] != 0) ? to_string(matrix[i][j]) : " ") << " ";
         }
         cout << endl;
     }
