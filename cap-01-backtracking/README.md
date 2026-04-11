@@ -122,11 +122,11 @@ This problem was also evaluated during Lab 01 in the 2026-01 semester. Given an 
   ```bash
   max_num_cuts: 7
   Final result
-  1 0 7 7 7 
+  1   7 7 7 
   1 6 6 6 4 
   1 5 5 5 4 
-  2 2 2 0 4 
-  0 0 3 3 3 
+  2 2 2   4 
+      3 3 3 
   ```
 
 ---
