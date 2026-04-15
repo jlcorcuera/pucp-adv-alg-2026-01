@@ -9,7 +9,7 @@ This folder contains the class exercises and algorithm implementations related t
 - [1. Fibonacci Sequence](#1-fibonacci-sequence-fibonaccimaincpp)
 - [2. Coin Row Problem](#2-coin-row-problem-coin_row_problemmaincpp)
 - [3. Longest Increasing Subsequence](#3-longest-increasing-subsequence-longest_increasing_subsequencemaincpp)
-- [4. Knapsack Problem (Upcoming)](#4-knapsack-problem-upcoming)
+- [4. Knapsack Problem](#4-knapsack-problem-knapsack_problemmaincpp)
 - [5. Other problems from previous lab sessions](#5-other-problems-from-previous-lab-sessions)
 
 ## 📝 Problem Descriptions and Algorithms
@@ -79,17 +79,36 @@ In this example, we solve the classical Longest Increasing Subsequence (LIS) pro
   5
   ```
 
-### 4. Knapsack Problem (Upcoming)
-*(This problem will be implemented in the next lecture.)*
+### 4. Knapsack Problem (`knapsack_problem/main.cpp`)
+In this example, we apply dynamic programming to solve the 0/1 Knapsack Problem, a classic optimization problem.
 
-The Knapsack Problem is a classic optimization problem.
+The Knapsack Problem is defined as follows:
 Given $n$ items with:
 - Integer weights: $w_1, w_2, \dots, w_n$
 - Values: $v_1, v_2, \dots, v_n$
 
 and a knapsack of integer capacity $W$.
 
-**Goal:** Find the most valuable subset of items that fit into the knapsack.
+- **Goal:** Find the most valuable subset of items that fit into the knapsack. In our provided code, we have 4 items with weights `{2, 1, 3, 2}` and values `{12, 10, 20, 15}`, and a total knapsack capacity of `W = 5`.
+- **Idea:** To maximize the value, we consider items piece by piece while varying the intermediate capacity limit up to the maximal capacity $W$. At each step while sequentially going through the items, for each possible capacity limit, we evaluate whether to include the current item or not. If we include it, the remaining capacity decreases by the item's weight, and we add its value to the optimal value found for the remaining capacity among the items we have already considered.
+- **Algorithm:** The proposed solution makes use of a bottom-up, 2D dynamic programming approach.
+  - A state array `dp[N+1][W+1]` is used, where `dp[i][j]` represents the maximum value that can be obtained from a subset of the first `i` items, considering a knapsack with maximum weight capacity `j`.
+  - First, we iterate over all item counts `i` from $1$ to $N$, and nested inside we iterate over all capacities `j` from $1$ to $W$. Base cases (0 items or 0 capacity) are initialized to 0.
+  - For each element evaluation, we check if the current item's weight (`weights[i-1]`) fits the capacity restriction (`j`). If it does not, we cannot select the item and pull the optimal value from the previous phase: `dp[i][j] = dp[i-1][j]`.
+  - If we can pack the item, we branch between two decisions: either discarding the item, getting a value of `dp[i-1][j]`, or putting the item in the knapsack, gaining its value plus the optimal configuration of the remaining capacity `value + dp[i-1][j - weight]`.
+  - The maximum of both choices is stored in `dp[i][j]`.
+  - The final maximum value is obtained in `dp[N][W]`.
+- **How to run:**
+  ```bash
+  cd knapsack_problem
+  g++ -O2 -o knapsack main.cpp
+  ./knapsack
+  ```
+
+- **Example Output:**
+  ```bash
+  37
+  ```
 
 ### 5. Other problems from previous lab sessions
 *(To be added)*
