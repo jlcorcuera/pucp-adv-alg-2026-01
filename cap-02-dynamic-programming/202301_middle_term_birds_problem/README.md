@@ -33,9 +33,11 @@ Para $n = 2$, el número de combinaciones dependerá de respetar que un Agaporni
 
 *Restricciones:* "No puede usar registros ni TADs, solo arreglos y matrices de enteros."
 
-## Solución Propuesta (Programación Dinámica)
+## Cómo aplicar Programación Dinámica
 
 Este problema sigue un claro patrón de **Programación Dinámica de Máquina de Estados** (también conocido como *State Machine DP* u *Optimización de Perfiles*). En lugar de calcular cada posibilidad usando una búsqueda exhaustiva (cuyo tiempo sería exponencial), podemos aislar los casos de una sola columna y hacerlos "transicionar" a la siguiente.
+
+## Análisis del Algoritmo (Programación Dinámica)
 
 El algoritmo implementado en `main.cpp` sigue los siguientes pasos:
 
@@ -55,7 +57,7 @@ La función implementada utiliza internamente la matriz `dp[STATES][N_MAX + 1]` 
 
 ### 3. Caso Base (Inicialización)
 
-Para la columna `i = 1`, la formación no depende de piezas históricas anteriores a su izquierda. Simplemente existe una sola forma de alcanzar cada estado de forma aislada.
+Para la columna `i = 1`, la formación no depende de columnas anteriores a su izquierda. Simplemente existe una sola forma de alcanzar cada estado de forma aislada.
 ```cpp
 dp[0][1] = 1; // 1 combinación donde la columna 1 termina en C/C
 dp[1][1] = 1; // 1 combinación donde la columna 1 termina en A/C

@@ -73,6 +73,6 @@ Una vez situado ante un objeto con un peso `weight` y ganancia `value`, el algor
 
 ### 4. Resolución de Salida
 
-Tras los bucles procesando iterativamente desde limitaciones pequeñas hasta nuestro escenario de vida real (evaluar $N=4$ objetos asumiendo un peso máximo $W=5$), la mayor certidumbre reposará en el último cuadrante activo de nuestra tabulación. 
+Una vez finalizados ambos bucles (habiendo evaluado los $N$ objetos para cada capacidad desde $1$ hasta $W$), el resultado final se encuentra en la última celda de la matriz:
 
-La máxima ganancia esperada termina documentada en `dp[N][W]`.
+La máxima ganancia posible se obtiene en `dp[N][W]`.
