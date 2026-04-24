@@ -18,7 +18,18 @@ Para $n = 1$, las posibles combinaciones válidas en esa columna (de tamaño 2 a
 
 *(Nota: Agapornis sobre Agapornis es inválido dado que se atacarían de forma vertical)*.
 
-Para $n = 2$, el número de combinaciones dependerá de respetar que un Agapornis no quede "pegado" horizontalmente a un Agapornis de la columna anterior.
+Para $n = 2$, el número de combinaciones dependerá de respetar que un Agapornis no quede "pegado" horizontalmente a un Agapornis de la columna anterior. **Por tal motivo con n=2 columnas se podrán formar 7 combinaciones diferentes:**
+
+* *(Columna 1 $\rightarrow$ Columna 2)*
+1. `(C/C)` junto a `(C/C)`
+2. `(C/C)` junto a `(A/C)`
+3. `(C/C)` junto a `(C/A)`
+4. `(A/C)` junto a `(C/C)`
+5. `(A/C)` junto a `(C/A)`
+6. `(C/A)` junto a `(C/C)`
+7. `(C/A)` junto a `(A/C)`
+
+*(No son válidas opciones como `(A/C)` junto a `(A/C)` ni `(C/A)` junto a `(C/A)` porque provocarían que dos agapornis queden ubicados el uno al lado del otro horizontalmente).*
 
 *Restricciones:* "No puede usar registros ni TADs, solo arreglos y matrices de enteros."
 
@@ -38,7 +49,9 @@ Dado que solo hay 2 filas por cada columna, en una columna cualquiera solo exist
 ### 2. Planteamiento de la Matriz `dp`
 
 La función implementada utiliza internamente la matriz `dp[STATES][N_MAX + 1]` (donde `STATES = 3`).
-- La posición `dp[estado][i]` representa: *"La cantidad total de combinaciones de jaulas que se pueden formar con una dimensión de `i` columnas, sabiendo certeramente que esta última columna tiene forma del `estado` seleccionado"*.
+> [!IMPORTANT]
+> **¿Qué guardamos exactamente en `dp`?**  
+> Al tratarse de un enfoque combinatorio, la posición `dp[estado][i]` almacena numéricamente: **"La cantidad total de combinaciones de jaulas que se pueden formar asumiendo una dimensión de `i` columnas, sabiendo certeramente que esta última columna tiene la forma final del `estado` seleccionado"**.
 
 ### 3. Caso Base (Inicialización)
 
@@ -56,10 +69,10 @@ Desde la columna `i = 2` hasta la meta `n`, para construir el resultado debemos 
 - **Para alcanzar el Estado 0 (C/C):** Una columna de puros canarios puede unirse a cualquiera de las 3 formaciones de la columna izquierda previa sin problemas. Entonces es la suma del historial previo:
   `dp[0][i] = dp[0][i - 1] + dp[1][i - 1] + dp[2][i - 1];`
 
-- **Para alcanzar el Estado 1 (A/C):** Tienes un Agapornis arriba. Es un movimiento ilegal si en tu izquierda también había un Agapornis arriba. Por ello se ignoran opciones como la previa `(A/C)`, y nos apoyamos en el resto:
+- **Para alcanzar el Estado 1 (A/C):** Esta columna tiene un Agapornis en la fila superior. Si la columna anterior también terminó en estado `(A/C)`, ambos agapornis quedarían adyacentes horizontalmente, lo cual viola la restricción del problema. Por lo tanto, se excluye el estado `(A/C)` previo y solo se suman las combinaciones provenientes de los otros dos estados compatibles:
   `dp[1][i] = dp[0][i - 1] + dp[2][i - 1];`
 
-- **Para alcanzar el Estado 2 (C/A):** Tienes un Agapornis abajo. Resulta ilegal si tu izquierda también tenía un Agapornis abajo. Descartamos depender de `(C/A)` previo e incluimos los otros dos caminos:
+- **Para alcanzar el Estado 2 (C/A):** Esta columna tiene un Agapornis en la fila inferior. Si la columna anterior también terminó en estado `(C/A)`, ambos agapornis quedarían adyacentes horizontalmente, lo cual viola la restricción del problema. Por lo tanto, se excluye el estado `(C/A)` previo y solo se suman las combinaciones provenientes de los otros dos estados compatibles:
   `dp[2][i] = dp[0][i - 1] + dp[1][i - 1];`
 
 ### 5. Respuesta Final

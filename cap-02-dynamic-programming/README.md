@@ -10,8 +10,8 @@ This folder contains the class exercises and algorithm implementations related t
 - [2. Coin Row Problem](#2-coin-row-problem-coin_row_problemmaincpp)
 - [3. Longest Increasing Subsequence](#3-longest-increasing-subsequence-longest_increasing_subsequencemaincpp)
 - [4. Knapsack Problem](#4-knapsack-problem-knapsack_problemmaincpp)
-- [5. Robot Wood Cutter (Examen Parcial 2023-1)](#5-robot-wood-cutter-examen-parcial-2023-1-202301_middle_term_exam_robot_cut_woodsmaincpp)
-- [6. Other problems from previous lab sessions](#6-other-problems-from-previous-lab-sessions)
+- [5. Bird Cage Problem (Examen Parcial 2023-1)](#5-bird-cage-problem-examen-parcial-2023-1-202301_middle_term_birds_problemmaincpp)
+- [6. Robot Wood Cutter (Examen Parcial 2023-1)](#6-robot-wood-cutter-examen-parcial-2023-1-202301_middle_term_exam_robot_cut_woodsmaincpp)
 
 ## 📝 Problem Descriptions and Algorithms
 
@@ -81,7 +81,7 @@ In this example, we solve the classical Longest Increasing Subsequence (LIS) pro
   ```
 
 ### 4. Knapsack Problem (`knapsack_problem/main.cpp`)
-In this example, we apply dynamic programming to solve the 0/1 Knapsack Problem, a classic optimization problem.
+In this example, we apply dynamic programming to solve the 0/1 Knapsack Problem, a classic optimization problem. *(See the [Spanish explanation](knapsack_problem/README.md))*
 
 The Knapsack Problem is defined as follows:
 Given $n$ items with:
@@ -111,7 +111,30 @@ and a knapsack of integer capacity $W$.
   37
   ```
 
-### 5. Robot Wood Cutter (Examen Parcial 2023-1) (`202301_middle_term_exam_robot_cut_woods/main.cpp`)
+### 5. Bird Cage Problem (Examen Parcial 2023-1) (`202301_middle_term_birds_problem/main.cpp`)
+In this example, we apply dynamic programming to solve a combinatorial problem about arranging canaries and lovebirds (agapornis) in a 2-row cage grid, where no two lovebirds can be placed adjacent to each other (horizontally or vertically). *(See the [Spanish explanation](202301_middle_term_birds_problem/README.md))*
+
+- **Goal:** Determine the total number of valid bird arrangements for a cage grid of 2 rows and $n$ columns, respecting the adjacency constraint for lovebirds.
+- **Idea:** Each column can be in one of 3 valid states: both canaries (C/C), lovebird on top (A/C), or lovebird on bottom (C/A). The number of valid arrangements for $n$ columns can be built iteratively by tracking how many ways each state can be reached based on the previous column's state.
+- **Algorithm:** The solution implements a State Machine DP approach using a `dp[3][N]` matrix.
+  - `dp[0][i]`: number of valid arrangements ending in state C/C at column `i`.
+  - `dp[1][i]`: number of valid arrangements ending in state A/C at column `i`.
+  - `dp[2][i]`: number of valid arrangements ending in state C/A at column `i`.
+  - State C/C can follow any previous state. States A/C and C/A cannot follow themselves (to avoid adjacent lovebirds).
+  - The final answer is `dp[0][n] + dp[1][n] + dp[2][n]`.
+- **How to run:**
+  ```bash
+  cd 202301_middle_term_birds_problem
+  g++ -O2 -o birds main.cpp
+  ./birds
+  ```
+
+- **Example Output (n=2):**
+  ```bash
+  7
+  ```
+
+### 6. Robot Wood Cutter (Examen Parcial 2023-1) (`202301_middle_term_exam_robot_cut_woods/main.cpp`)
 In this example, we apply dynamic programming to solve a variation of the Weighted Interval Scheduling Problem where we want to cut logs to maximize benefit without using structural objects or classes. *(See the [Spanish explanation](202301_middle_term_exam_robot_cut_woods/README.md))*
 
 - **Goal:** Maximize the total benefit obtained from cutting $N = 10$ logs, choosing among $M = 4$ possible presentations. Overlapping presentations in a given log cannot be cut.
@@ -153,9 +176,6 @@ In this example, we apply dynamic programming to solve a variation of the Weight
   3). 120
   4). 140
   ```
-
-### 6. Other problems from previous lab sessions
-*(To be added)*
 
 ---
 
