@@ -38,9 +38,7 @@ Dado que el objetivo es maximizar la ganancia de cortes que tienen puntos de ini
 
 ## Análisis del Algoritmo (Programación Dinámica)
 
-Para abordar este problema, descartamos las estrategias de cálculo exhaustivo ("Fuerza Bruta") debido a su extrema ineficiencia al procesar sub-combinaciones superpuestas. En su lugar, dado que el enunciado impone la estricta restricción de trabajar únicamente con matrices primitivas (prohibiendo usar objetos o registros para agrupar datos), el algoritmo implementa una estrategia lineal en la que el reto de optimización bidimensional se simplifica a un proceso de decisiones continuas de "cortar" o "no cortar" memorizando los mejores resultados paso a paso.
-
-El algoritmo implementado en `main.cpp` aborda precisamente el *cómo resolver esto* llevando a la práctica la teoría mediante los siguientes pasos iterativos:
+Dado que el enunciado impone la estricta restricción de trabajar únicamente con matrices primitivas (prohibiendo usar objetos o registros para agrupar datos), el algoritmo en `main.cpp` implementa la teoría anterior convirtiendo el reto de optimización bidimensional en un proceso de decisiones continuas de "cortar" o "no cortar" mediante los siguientes pasos iterativos:
 
 ### 1. Representación de Datos en Matriz
 Dada la prohibición de uso de registros (structs/objetos), la información se almacena en una matriz bidimensional `data[ATTRIBUTES][N_PRESENTATIONS]`.
@@ -54,7 +52,11 @@ Ordenar por la coordenada final asegura que, conforme iteramos, procesamos los p
 
 ### 3. Planteamiento del Arreglo DP
 Se crea un arreglo `dp` de tamaño `N_PRESENTATIONS + 1`.
-La posición `dp[i]` almacenará la ganancia máxima que se puede obtener utilizando un subconjunto óptimo dentro de las primeras `i` presentaciones ordenadas.
+**La posición `dp[i]` almacenará la ganancia máxima que se puede obtener utilizando un subconjunto óptimo dentro de las primeras `i` presentaciones ordenadas.**
+
+> [!IMPORTANT]
+> **¿Qué guardamos exactamente en `dp`?**  
+> Este arreglo opera como la memoria táctica del algoritmo. En lugar de registrar el orden de qué presentaciones específicas hemos cortado, sus celdas documentan únicamente **el valor numérico (S/.) de la mayor ganancia confirmada y acumulada** hasta ese instante en el progreso de la iteración.
 
 **Inicialización (`dp[0]`):**
 El caso base del arreglo corresponde a la primera presentación después de ser ordenada (índice 0). Dado que es el primer elemento a evaluar y no existe ninguna presentación anterior con la cual pueda intersecarse temporalmente, su máxima ganancia es su propio beneficio directo. **Es fundamental inicializar este valor manualmente** porque servirá como el punto de partida que alimenta de información a la iteración del código principal, ya que el bucle `for` está diseñado para arrancar su lógica recién a partir del índice 1 (`for (int i = 1...`), apoyándose siempre en cálculos anteriores y evitando así desbordes por ínidices negativos. Por esto, se inicializa como:
