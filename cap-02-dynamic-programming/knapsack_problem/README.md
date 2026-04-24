@@ -2,14 +2,14 @@
 
 ## Enunciado del Problema
 
-Imagina que eres un explorador y has encontrado un cofre con $N$ objetos diferentes. Cada objeto posee dos atributos fundamentales:
+Se dispone de $N$ objetos diferentes, cada uno con dos atributos fundamentales:
 - Un **peso** específico.
 - Un **valor** (o ganancia) asociado.
 
-Sin embargo, solo cuentas con una mochila que puede soportar una **capacidad máxima de peso ($W$)**. 
-El objetivo es determinar inteligentemente qué objetos debes elegir para empacar de tal manera que se **maximice el valor total acumulado**, sin exceder jamás el límite de peso permitido por la mochila.
+Se cuenta con una mochila que puede soportar una **capacidad máxima de peso ($W$)**.
+El objetivo es determinar qué objetos empacar de tal manera que se **maximice el valor total acumulado**, sin exceder el límite de peso permitido por la mochila.
 
-Esta versión se apellida "0/1", lo que significa que un objeto **no puede fraccionarse**: solo tienes la opción binaria de tomar el objeto íntegramente (1) o dejarlo atrás (0).
+Esta versión se denomina "0/1", lo que significa que un objeto **no puede fraccionarse**: solo existe la opción binaria de tomar el objeto íntegramente (1) o dejarlo fuera (0).
 
 ### Datos del Ejemplo
 
