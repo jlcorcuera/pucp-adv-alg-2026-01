@@ -18,7 +18,7 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
     for (int i = 0; i < N_PRESENTATIONS; i++) {
         for (int j = 0; j < N_PRESENTATIONS; j++) {
             if (data[1][i] < data[1][j]) {
-                for (int k = 0; k < N_PRESENTATIONS; k++) {
+                for (int k = 0; k < ATTRIBUTES; k++) {
                     int temp = data[k][i];
                     data[k][i] = data[k][j];
                     data[k][j] = temp;
