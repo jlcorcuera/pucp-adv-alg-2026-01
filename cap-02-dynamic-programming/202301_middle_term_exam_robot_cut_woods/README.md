@@ -28,11 +28,19 @@ Para los `N = 10` troncos, la ganancia máxima obtenida será de **S/. 1400**.
 
 *Restricciones:* "No puede usar registros ni TADs, solo arreglos y matrices de enteros."
 
-## Solución Propuesta (Programación Dinámica)
+## Cómo aplicar Programación Dinámica
 
-Este es un caso clásico del **Problema de Selección de Intervalos Ponderados (Weighted Interval Scheduling Problem)** adaptado a matrices simples (sin uso de `structs` o clases como indica la restricción).
+Dado que el objetivo es maximizar la ganancia de cortes que tienen puntos de inicio y final precisos (y que por lo tanto pueden superponerse bloqueándose mutuamente), una solución rudimentaria evaluaría exhaustivamente todas las selecciones posibles. Probar si para cada pieza "la incluimos" o "evaluamos otra" genera la evaluación redundante del mismo pedazo de madera muchísimas veces aumentando el tiempo de resolución exponencialmente.
 
-El algoritmo implementado en `main.cpp` sigue estos pasos:
+**La Programación Dinámica evita este reproceso aprovechando dos bases:**
+- **Tabulación de Subproblemas (Memoria):** Si mientras iteramos almacenamos en un arreglo **la máxima ganancia que pudimos obtener al cortar el tronco luego de haber analizado la presentación $i$**, nunca más tendremos que volver a indagar o recalcular combinaciones sobre las presentaciones que ya revisamos en el pasado.
+- **Subestructura Óptima:** La ganancia máxima global se puede construir matemáticamente a partir de soluciones óptimas más pequeñas. Si determinamos que debemos cortar la presentación actual, el sub-conjunto de cortes ideal se formará sumando la ganancia de esa presentación elegida más la ganancia máxima que ya habíamos conseguido en el espacio previo compatible (la presentación antes de ella que no se solapa).
+
+## Análisis del Algoritmo (Programación Dinámica)
+
+Para abordar este problema, descartamos las estrategias de cálculo exhaustivo ("Fuerza Bruta") debido a su extrema ineficiencia al procesar sub-combinaciones superpuestas. En su lugar, dado que el enunciado impone la estricta restricción de trabajar únicamente con matrices primitivas (prohibiendo usar objetos o registros para agrupar datos), el algoritmo implementa una estrategia lineal en la que el reto de optimización bidimensional se simplifica a un proceso de decisiones continuas de "cortar" o "no cortar" memorizando los mejores resultados paso a paso.
+
+El algoritmo implementado en `main.cpp` aborda precisamente el *cómo resolver esto* llevando a la práctica la teoría mediante los siguientes pasos iterativos:
 
 ### 1. Representación de Datos en Matriz
 Dada la prohibición de uso de registros (structs/objetos), la información se almacena en una matriz bidimensional `data[ATTRIBUTES][N_PRESENTATIONS]`.
