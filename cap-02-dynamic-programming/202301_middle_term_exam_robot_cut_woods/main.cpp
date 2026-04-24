@@ -26,8 +26,10 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
             }
         }
     }
+    cout << "Sorted data " << endl;
+    print(data);
     int dp[N_PRESENTATIONS + 1];
-    dp[0] = 0;
+    dp[0] = data[2][0];
     for (int i = 1; i <= N_PRESENTATIONS; i++) {
         int current_benefit = data[2][i - 1];
         int previous_benefit = dp[i - 1];
@@ -35,7 +37,7 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
         int new_benefit = 0;
         for (int j = i - 1; j >= 0; j--) {
             if (data[0][i] >= data[1][j]) {
-                new_benefit = data[2][j];
+                new_benefit = dp[j];
                 break;
             }
         }
@@ -65,8 +67,7 @@ Beneficio (S/.) 30 40 80 100
         {10, 4, 12, 15},
         {30, 40, 80, 100}
     };
-    cout << "Initial State " << endl;
-    print(data);
+
     solve(data);
     return 0;
 }
