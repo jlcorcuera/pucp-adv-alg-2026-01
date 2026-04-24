@@ -10,7 +10,8 @@ This folder contains the class exercises and algorithm implementations related t
 - [2. Coin Row Problem](#2-coin-row-problem-coin_row_problemmaincpp)
 - [3. Longest Increasing Subsequence](#3-longest-increasing-subsequence-longest_increasing_subsequencemaincpp)
 - [4. Knapsack Problem](#4-knapsack-problem-knapsack_problemmaincpp)
-- [5. Other problems from previous lab sessions](#5-other-problems-from-previous-lab-sessions)
+- [5. Robot Wood Cutter (Examen Parcial 2023-1)](#5-robot-wood-cutter-examen-parcial-2023-1-202301_middle_term_exam_robot_cut_woodsmaincpp)
+- [6. Other problems from previous lab sessions](#6-other-problems-from-previous-lab-sessions)
 
 ## 📝 Problem Descriptions and Algorithms
 
@@ -110,7 +111,50 @@ and a knapsack of integer capacity $W$.
   37
   ```
 
-### 5. Other problems from previous lab sessions
+### 5. Robot Wood Cutter (Examen Parcial 2023-1) (`202301_middle_term_exam_robot_cut_woods/main.cpp`)
+In this example, we apply dynamic programming to solve a variation of the Weighted Interval Scheduling Problem where we want to cut logs to maximize benefit without using structural objects or classes. *(See the [Spanish explanation](202301_middle_term_exam_robot_cut_woods/README.md))*
+
+- **Goal:** Maximize the total benefit obtained from cutting $N = 10$ logs, choosing among $M = 4$ possible presentations. Overlapping presentations in a given log cannot be cut.
+- **Idea:** Using dynamic programming, after sorting the presentations by their end positions, we can determine the maximum theoretical value for a single log. For each presentation piece, we calculate whether to include it (summing its benefit with the best non-overlapping past configuration) or simply discard it and keep the previously found optimal benefit. Because every log is equal, calculating the maximum benefit for one and multiplying the result by $N$ produces the optimal total result.
+- **Algorithm:** The solution implements a bottom-up 1D dynamic programming approach inside a primitive multidimensional array.
+  - A matrix acts as the data source to hold start times, end times, and benefits. It is strictly sorted by the `end` time component.
+  - An array `dp` of size `N_PRESENTATIONS + 1` tracks accumulated optimums.
+  - Exploring each presentation index `i`, we find the largest valid past presentation index `j` that doesn't overlap the new one's start time (`data[1][j] <= data[0][i]`).
+  - The equation calculates `dp[i]` as the maximum between `dp[i-1]` (not cutting the piece) and `data[2][i] + dp[j]` (cutting the piece and adding its benefit).
+- **How to run:**
+  ```bash
+  cd 202301_middle_term_exam_robot_cut_woods
+  g++ -O2 -o robot_cut_woods main.cpp
+  ./robot_cut_woods
+  ```
+
+- **Example Output (Showing DP values per index):**
+  ```bash
+  Sorted data 
+  Presentation 1
+  2
+  4
+  40
+  Presentation 2
+  5
+  10
+  30
+  Presentation 3
+  6
+  12
+  80
+  Presentation 4
+  4
+  15
+  100
+  0). 40
+  1). 80
+  2). 80
+  3). 120
+  4). 140
+  ```
+
+### 6. Other problems from previous lab sessions
 *(To be added)*
 
 ---
