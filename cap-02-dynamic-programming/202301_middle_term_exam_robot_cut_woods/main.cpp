@@ -38,14 +38,13 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
 
         int new_benefit = 0;
         for (int j = i - 1; j >= 0; j--) {
-            if (data[0][i] >= data[1][j]) {
+            if (data[0][i - 1] >= data[1][j - 1]) {
                 new_benefit = dp[j];
                 break;
             }
         }
 
         new_benefit = new_benefit + current_benefit;
-
         dp[i] = max(previous_benefit, new_benefit);
     }
 
