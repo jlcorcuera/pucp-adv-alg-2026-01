@@ -33,11 +33,18 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
     int dp[N_PRESENTATIONS + 1];
     dp[0] = data[2][0];
     for (int i = 1; i <= N_PRESENTATIONS; i++) {
+        /*
+         * take a look here, the benefit of the i wood is located
+         * in the data matrix at the location (i - 1)
+         */
         int current_benefit = data[2][i - 1];
         int previous_benefit = dp[i - 1];
 
         int new_benefit = 0;
         for (int j = i - 1; j >= 0; j--) {
+            /*
+             * same here, access to the data of wood i or j requires substract 1
+             */
             if (data[0][i - 1] >= data[1][j - 1]) {
                 new_benefit = dp[j];
                 break;
