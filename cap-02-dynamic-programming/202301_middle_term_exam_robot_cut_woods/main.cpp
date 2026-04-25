@@ -41,7 +41,7 @@ void solve(int data[ATTRIBUTES][N_PRESENTATIONS]) {
         int previous_benefit = dp[i - 1];
 
         int new_benefit = 0;
-        for (int j = i - 1; j >= 0; j--) {
+        for (int j = i - 1; j > 0; j--) {
             /*
              * same here, access to the data of wood i or j requires substract 1
              */
