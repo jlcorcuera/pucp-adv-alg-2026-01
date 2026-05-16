@@ -12,6 +12,7 @@ This folder contains the class exercises and algorithm implementations related t
 - [4. Knapsack Problem](#4-knapsack-problem-knapsack_problemmaincpp)
 - [5. Bird Cage Problem (Examen Parcial 2023-1)](#5-bird-cage-problem-examen-parcial-2023-1-202301_middle_term_birds_problemmaincpp)
 - [6. Robot Wood Cutter (Examen Parcial 2023-1)](#6-robot-wood-cutter-examen-parcial-2023-1-202301_middle_term_exam_robot_cut_woodsmaincpp)
+- [7. Coin Line Problem](#7-coin-line-problem-coin_line_problemmaincpp)
 
 ## 📝 Problem Descriptions and Algorithms
 
@@ -175,6 +176,33 @@ In this example, we apply dynamic programming to solve a variation of the Weight
   2). 80
   3). 120
   4). 140
+  ```
+
+### 7. Coin Line Problem (`coin_line_problem/main.cpp`)
+In this example, we apply dynamic programming (top-down memoization) to count the number of valid ways to arrange a line of coins given a fixed set of denominations, subject to the constraint that no two adjacent coins in the line may share the same denomination.
+
+The problem is defined as follows:
+> Given `p` coins of 1 sol, `q` coins of 2 soles, and `r` coins of 5 soles, in how many ways can we arrange all coins in a single line such that no two coins of the same type are placed next to each other?
+
+- **Goal:** Count every distinct ordering of the `p + q + r` coins where no two consecutive coins have the same denomination. For the provided example (`p=2`, `q=2`, `r=1`), the answer should be printed to standard output.
+- **Idea:** Model the problem as a recursive search over the remaining coin counts. At each step we choose which denomination to place next, with the only restriction being that we cannot repeat the denomination that was just placed. Memoizing the result for every `(p, q, r, last)` tuple avoids recomputing the same subproblem multiple times, turning an otherwise exponential search into a polynomial one.
+- **Algorithm:** The solution implements a top-down memoization approach using a 4-dimensional DP table.
+  - The state is defined by `dp[p][q][r][last_idx]`, where `p`, `q`, and `r` represent the remaining counts of each coin type and `last_idx ∈ {0, 1, 2, 3}` encodes the denomination of the coin placed last (`0` = none yet).
+  - **Base case:** When `p == 0 && q == 0 && r == 0`, all coins have been placed successfully → return `1`.
+  - **Recursive case:** For each denomination that still has coins left *and* differs from `last_idx`, recursively count the ways of completing the arrangement, summing all valid branches.
+  - Computed values are stored in the `dp` table (initialized to `-1`) before returning, so each state is solved at most once.
+  - The total number of valid arrangements is obtained by calling `count_ways(dp, p, q, r, 0)`.
+- **How to run:**
+  ```bash
+  cd coin_line_problem
+  g++ -O2 -o coin_line main.cpp
+  ./coin_line
+  ```
+
+- **Example Output (`p=2, q=2, r=1`):**
+  ```bash
+  Para p=2, q=2, r=1
+  El numero de formas validas es: 12
   ```
 
 ---
