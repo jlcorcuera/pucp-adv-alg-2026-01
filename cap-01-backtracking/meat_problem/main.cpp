@@ -58,16 +58,18 @@ bool build_order_with_binary_decision(int idx, int P, vector<int> t, int k, vect
         }
         order.pop_back();
         indexes.pop_back();
-
-        /*
-         * Let's not including the current slide of meat in the solution
-         * Here we don't need to add that slide of meat into the order neither decrease the P parameter
-         * value in the next recursive call
-         */
-        if (build_order_with_binary_decision(idx + 1, P, t, k, order, indexes)) {
-            return true;
-        }
     }
+
+
+    /*
+        * Let's not including the current slide of meat in the solution
+        * Here we don't need to add that slide of meat into the order neither decrease the P parameter
+        * value in the next recursive call
+        */
+    if (build_order_with_binary_decision(idx + 1, P, t, k, order, indexes)) {
+        return true;
+    }
+
     return false;
 }
 
