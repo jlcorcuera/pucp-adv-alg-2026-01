@@ -48,6 +48,7 @@ The course is organized into five chapters. Each chapter has a dedicated folder 
 ## 📚 Additional material
 
 - [Notes on Vector (STL)](./add-notes-01-vector/)
+- [Notes on Map (STL)](./add-notes-02-map/)
 
 ---
 
