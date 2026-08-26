@@ -44,12 +44,12 @@ bool solve_backtracking_decision(int idx, vector<int> numbers, vector<int>& inde
     int number = numbers[idx];
     if (number <= total_sum) {
         indexes.push_back(idx);
-        if (solve_backtracking(idx+1, numbers, indexes, total_sum - number)) {
+        if (solve_backtracking_decision(idx+1, numbers, indexes, total_sum - number)) {
             return true;
         }
         indexes.pop_back();
-
-        if (solve_backtracking(idx+1, numbers, indexes, total_sum)) {
+        
+        if (solve_backtracking_decision(idx+1, numbers, indexes, total_sum)) {
             return true;
         }
     }
@@ -64,7 +64,7 @@ void solve(vector<int> numbers) {
     }
     if (sum % 2 == 0) {
         vector<int> selected_indexes;
-        solve_backtracking_decision(0, numbers, selected_indexes, sum / 2);
+        solve_backtracking(0, numbers, selected_indexes, sum / 2);
         vector<int> s1, s2 = numbers;
         for (auto index : selected_indexes) {
             s1.push_back(numbers[index]);
