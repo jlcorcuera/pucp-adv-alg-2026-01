@@ -48,10 +48,11 @@ int main() {
         vector<Linea> lineas(M);
         vector<Orden> noAsignadas = ordenes;
 
+        sort(noAsignadas.begin(), noAsignadas.end(),
+    [](const Orden &a, const Orden &b) { return a.tiempo > b.tiempo; });
+
         while (!noAsignadas.empty()) {
             // RCL - mayor tiempo
-            sort(noAsignadas.begin(), noAsignadas.end(),
-                [](const Orden &a, const Orden &b) { return a.tiempo > b.tiempo; });
             double t_max2 = noAsignadas.front().tiempo;
             double t_min2 = noAsignadas.back().tiempo;
             double umbral2 = t_max2 - ALFA * (t_max2 - t_min2);
